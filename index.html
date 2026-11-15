@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملف الكشافة المدرسية - المرحلة الابتدائية</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --olive: #4a5e3a;
+    --olive-mid: #6b7f54;
+    --olive-light: #8fa370;
+    --olive-pale: #c8d4b0;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-pale: #f5e9c0;
+    --brown: #7a5c2e;
+    --cream: #faf7f0;
+    --white: #ffffff;
+    --text-dark: #2a2a2a;
+    --text-mid: #4a4a4a;
+    --shadow: rgba(74, 94, 58, 0.15);
+  }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: #f0f2ed;
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* Navigation */
+  .nav-bar {
+    background: var(--olive);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .nav-title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .nav-tab {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.85);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-tab:hover, .nav-tab.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: white;
+  }
+
+  /* Cover Page */
+  .page {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .page.active { display: block; }
+
+  /* Cover */
+  .cover-wrap {
+    background: linear-gradient(160deg, var(--olive) 0%, #2e3d20 100%);
+    border-radius: 16px;
+    padding: 50px 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  }
+
+  .cover-wrap::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cover-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .scout-emblem {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, var(--gold) 0%, #a07820 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 52px;
+    box-shadow: 0 6px 25px rgba(201,168,76,0.4);
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-title {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-subtitle {
+    font-size: 18px;
+    color: var(--gold-light);
+    font-weight: 500;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-divider {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 30px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 30px;
+  }
+
+  .cover-info-box {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .cover-info-label {
+    font-size: 11px;
+    color: var(--gold-light);
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+
+  .cover-info-value {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .cover-toc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+    max-width: 540px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .toc-item {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .toc-item:hover {
+    background: rgba(201,168,76,0.2);
+    border-color: var(--gold);
+  }
+
+  .toc-num {
+    background: var(--gold);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Section Header */
+  .section-header {
+    background: linear-gradient(135deg, var(--olive) 0%, var(--olive-mid) 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px var(--shadow);
+  }
+
+  .section-icon {
+    font-size: 32px;
+    background: rgba(255,255,255,0.15);
+    width: 56px; height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-title { font-size: 22px; font-weight: 800; }
+  .section-desc { font-size: 13px; color: var(--olive-pale); margin-top: 3px; }
+
+  /* Cards */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px var(--shadow);
+    border-right: 4px solid var(--olive);
+  }
+
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--olive);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card p, .card li {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text-mid);
+  }
+
+  .card ul { padding-right: 20px; }
+  .card li { margin-bottom: 4px; }
+
+  /* Info Grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .info-card {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 2px 10px var(--shadow);
+    border-top: 3px solid var(--olive);
+  }
+
+  .info-card-icon { font-size: 28px; margin-bottom: 8px; }
+  .info-card-label { font-size: 11px; color: #888; margin-bottom: 4px; }
+  .info-card-value { font-size: 15px; font-weight: 700; color: var(--text-dark); }
+
+  /* Hymn box */
+  .hymn-box {
+    background: linear-gradient(135deg, var(--gold-pale) 0%, #fff9e6 100%);
+    border: 2px solid var(--gold);
+    border-radius: 14px;
+    padding: 28px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .hymn-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .hymn-text {
+    font-size: 17px;
+    line-height: 2.2;
+    color: var(--olive);
+    font-weight: 500;
+  }
+
+  /* Stages */
+  .stages-wrap { display: flex; flex-direction: column; gap: 12px; }
+
+  .stage-card {
+    background: white;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 10px var(--shadow);
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .stage-badge {
+    background: linear-gradient(135deg, var(--olive) 0%, var(--olive-mid) 100%);
+    color: white;
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .stage-name { font-size: 15px; font-weight: 700; color: var(--olive); }
+  .stage-age { font-size: 12px; color: #888; margin-top: 2px; }
+  .stage-desc { font-size: 13px; color: var(--text-mid); margin-top: 6px; line-height: 1.7; }
+
+  /* Goals */
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .goal-card {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 2px 10px var(--shadow);
+    border-top: 4px solid var(--olive-light);
+  }
+
+  .goal-category {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--olive);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .goal-list { list-style: none; padding: 0; }
+  .goal-list li {
+    font-size: 13px;
+    color: var(--text-mid);
+    padding: 4px 0;
+    border-bottom: 1px dashed #eee;
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .goal-list li::before {
+    content: '◈';
+    color: var(--gold);
+    font-size: 10px;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  /* Plan Table */
+  .plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px var(--shadow);
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+
+  .plan-table th {
+    background: var(--olive);
+    color: white;
+    padding: 12px 10px;
+    font-weight: 600;
+  }
+
+  .plan-table td {
+    padding: 11px 10px;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--text-mid);
+    text-align: center;
+  }
+
+  .plan-table tr:last-child td { border-bottom: none; }
+
+  .plan-table tr:nth-child(even) td { background: #fafaf8; }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .badge-green { background: #e8f5e9; color: #2e7d32; }
+  .badge-blue { background: #e3f2fd; color: #1565c0; }
+  .badge-orange { background: #fff3e0; color: #e65100; }
+
+  /* Signals */
+  .signals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .signal-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 2px 10px var(--shadow);
+  }
+
+  .signal-icon { font-size: 28px; margin-bottom: 8px; }
+  .signal-name { font-size: 14px; font-weight: 700; color: var(--olive); margin-bottom: 4px; }
+  .signal-desc { font-size: 11px; color: #888; line-height: 1.5; }
+
+  /* Awards */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+
+  .award-card {
+    background: linear-gradient(135deg, #fff9e6 0%, var(--white) 100%);
+    border: 2px solid var(--gold-pale);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(201,168,76,0.15);
+    transition: transform 0.2s;
+  }
+
+  .award-card:hover { transform: translateY(-3px); }
+
+  .award-icon { font-size: 36px; margin-bottom: 10px; }
+  .award-name { font-size: 14px; font-weight: 700; color: var(--brown); margin-bottom: 6px; }
+  .award-desc { font-size: 12px; color: #777; line-height: 1.6; }
+
+  /* Forms */
+  .form-wrap {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px var(--shadow);
+    margin-bottom: 16px;
+  }
+
+  .form-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--olive);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--olive-pale);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .form-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 5px;
+  }
+
+  .form-field input, .form-field select, .form-field textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 13px;
+    color: var(--text-dark);
+    background: #fafafa;
+    transition: border-color 0.2s;
+  }
+
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    outline: none;
+    border-color: var(--olive);
+    background: white;
+  }
+
+  .form-field.full { grid-column: span 2; }
+
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+    color: var(--text-mid);
+  }
+
+  .checklist input[type="checkbox"] {
+    width: 18px; height: 18px;
+    accent-color: var(--olive);
+    cursor: pointer;
+  }
+
+  /* Activities Table */
+  .activities-wrap {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px var(--shadow);
+    margin-bottom: 16px;
+  }
+
+  .activity-row {
+    display: grid;
+    grid-template-columns: 50px 1fr 100px 100px 80px;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s;
+  }
+
+  .activity-row:hover { background: #fafaf8; }
+
+  .activity-row.header {
+    background: var(--olive);
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .activity-row:last-child { border-bottom: none; }
+
+  .activity-num {
+    font-weight: 700;
+    color: var(--olive-mid);
+    font-size: 13px;
+  }
+
+  .activity-name { font-size: 13px; color: var(--text-dark); font-weight: 500; }
+  .activity-date, .activity-place { font-size: 12px; color: #888; }
+
+  /* Conclusion */
+  .conclusion-wrap {
+    background: linear-gradient(160deg, var(--olive) 0%, #2e3d20 100%);
+    border-radius: 14px;
+    padding: 40px 30px;
+    text-align: center;
+    color: white;
+  }
+
+  .conclusion-icon { font-size: 50px; margin-bottom: 20px; }
+  .conclusion-title { font-size: 26px; font-weight: 800; margin-bottom: 12px; }
+  .conclusion-text { font-size: 15px; line-height: 1.9; color: rgba(255,255,255,0.85); max-width: 600px; margin: 0 auto 25px; }
+
+  .signature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 25px;
+  }
+
+  .sig-box {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .sig-label { font-size: 11px; color: var(--gold-light); margin-bottom: 20px; }
+  .sig-line { border-top: 1px solid rgba(255,255,255,0.4); padding-top: 8px; font-size: 12px; color: rgba(255,255,255,0.7); }
+
+  /* Print */
+  @media print {
+    .nav-bar { display: none; }
+    .page { display: block !important; page-break-after: always; }
+  }
+
+  @media (max-width: 600px) {
+    .cover-toc { grid-template-columns: 1fr; }
+    .cover-info-grid { grid-template-columns: 1fr; }
+    .nav-tabs { display: none; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-field.full { grid-column: span 1; }
+    .signature-grid { grid-template-columns: 1fr; }
+    .activity-row { grid-template-columns: 30px 1fr 80px; }
+    .activity-date, .activity-place { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <span class="nav-title">🏕️ ملف الكشافة المدرسية</span>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showPage('cover')">الغلاف</button>
+      <button class="nav-tab" onclick="showPage('intro')">المقدمة</button>
+      <button class="nav-tab" onclick="showPage('movement')">الحركة</button>
+      <button class="nav-tab" onclick="showPage('stages')">المراحل</button>
+      <button class="nav-tab" onclick="showPage('goals')">الأهداف</button>
+      <button class="nav-tab" onclick="showPage('plan')">الخطة</button>
+      <button class="nav-tab" onclick="showPage('signals')">الصافرات</button>
+      <button class="nav-tab" onclick="showPage('awards')">الإيعازات</button>
+      <button class="nav-tab" onclick="showPage('activities')">الأنشطة</button>
+      <button class="nav-tab" onclick="showPage('forms')">الاستمارات</button>
+      <button class="nav-tab" onclick="showPage('conclusion')">الخاتمة</button>
+    </div>
+  </div>
+</nav>
+
+<!-- COVER PAGE -->
+<div class="page active" id="page-cover">
+  <div class="cover-wrap">
+    <div class="scout-emblem">⚜️</div>
+    <div class="cover-title">ملف الكشافة المدرسية</div>
+    <div class="cover-subtitle">المرحلة الابتدائية</div>
+    <div class="cover-divider"></div>
+
+    <div class="cover-info-grid">
+      <div class="cover-info-box">
+        <div class="cover-info-label">اسم المدرسة</div>
+        <div class="cover-info-value">المدرسة الابتدائية الثانية</div>
+      </div>
+      <div class="cover-info-box">
+        <div class="cover-info-label">العام الدراسي</div>
+        <div class="cover-info-value">١٤٤٨ / ١٤٤٩ هـ</div>
+      </div>
+      <div class="cover-info-box">
+        <div class="cover-info-label">رائدة النشاط</div>
+        <div class="cover-info-value">أفراح حسن الأسمري</div>
+      </div>
+      <div class="cover-info-box">
+        <div class="cover-info-label">المنطقة التعليمية</div>
+        <div class="cover-info-value">الطائف</div>
+      </div>
+    </div>
+
+    <div class="cover-toc">
+      <div class="toc-item" onclick="showPage('intro')"><span class="toc-num">١</span> المقدمة والنشيد الكشفي</div>
+      <div class="toc-item" onclick="showPage('movement')"><span class="toc-num">٢</span> الحركة الكشفية والرؤية</div>
+      <div class="toc-item" onclick="showPage('stages')"><span class="toc-num">٣</span> المراحل الكشفية</div>
+      <div class="toc-item" onclick="showPage('goals')"><span class="toc-num">٤</span> الأهداف الاستراتيجية</div>
+      <div class="toc-item" onclick="showPage('plan')"><span class="toc-num">٥</span> خطة الوحدة الكشفية</div>
+      <div class="toc-item" onclick="showPage('signals')"><span class="toc-num">٦</span> الصافرات والتشكيلات</div>
+      <div class="toc-item" onclick="showPage('awards')"><span class="toc-num">٧</span> الإيعازات والنداءات</div>
+      <div class="toc-item" onclick="showPage('activities')"><span class="toc-num">٨</span> الأنشطة والفعاليات</div>
+      <div class="toc-item" onclick="showPage('forms')"><span class="toc-num">٩</span> الاستمارات الرسمية</div>
+      <div class="toc-item" onclick="showPage('conclusion')"><span class="toc-num">١٠</span> الخاتمة والتوصيات</div>
+    </div>
+  </div>
+</div>
+
+<!-- INTRO PAGE -->
+<div class="page" id="page-intro">
+  <div class="section-header">
+    <div class="section-icon">📜</div>
+    <div>
+      <div class="section-title">المقدمة والنشيد الكشفي</div>
+      <div class="section-desc">تعريف بالكشافة ونشيدها الرسمي</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🌿 المقدمة</div>
+    <p>
+      الكشافة والمرشدات حركةٌ تربوية عالمية تطوعية تُعنى بتكوين الشخصية المتكاملة للطالبة،
+      وتهدف إلى تنمية القيم الإسلامية الأصيلة وتعزيز الانتماء الوطني لدى الناشئة.
+      تُعدّ الوحدة الكشفية المدرسية الركيزة الأساسية في تطبيق المنهج الكشفي وسط البيئة المدرسية،
+      وذلك من خلال الأنشطة المتنوعة التي تُسهم في صقل شخصية الطالبة وتنمية مهاراتها الحياتية.
+    </p>
+    <br>
+    <p>
+      يسعى هذا الملف إلى توثيق الجهود الكشفية خلال العام الدراسي ١٤٤٨/١٤٤٩هـ،
+      وإبراز دور الوحدة الكشفية في خدمة المدرسة والمجتمع، وفق خطة شاملة تُراعي
+      أهداف الحركة الكشفية على المستوى الوطني والعالمي.
+    </p>
+  </div>
+
+  <div class="hymn-box">
+    <div class="hymn-title">🎵 النشيد الكشفي</div>
+    <div class="hymn-text">
+      نحنُ الكشافةُ يا بلادي &nbsp;•&nbsp; نبني المجدَ لكِ وننادي<br>
+      بالله والوطنِ نسيرُ معاً &nbsp;•&nbsp; نمضي إلى الأمجادِ قُدُما<br>
+      نحمي الوطنَ ونُعلي راياتِهِ &nbsp;•&nbsp; دوماً نُهلِّلُ لآياتِهِ<br>
+      الله أكبر والوطنُ فخرُنا &nbsp;•&nbsp; والخيرُ والبذلُ هو دربُنا
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-icon">📅</div>
+      <div class="info-card-label">تاريخ التأسيس العالمي</div>
+      <div class="info-card-value">١٩٠٧م - بادن باول</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🌍</div>
+      <div class="info-card-label">عدد الدول الأعضاء</div>
+      <div class="info-card-value">+١٧٠ دولة</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🏳️</div>
+      <div class="info-card-label">الكشافة في المملكة</div>
+      <div class="info-card-value">منذ ١٣٨٠هـ</div>
+    </div>
+  </div>
+</div>
+
+<!-- MOVEMENT PAGE -->
+<div class="page" id="page-movement">
+  <div class="section-header">
+    <div class="section-icon">🏕️</div>
+    <div>
+      <div class="section-title">الحركة الكشفية والرؤية والرسالة</div>
+      <div class="section-desc">القيم والمبادئ الأساسية للحركة</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 رؤية الحركة الكشفية</div>
+    <p>بناء جيلٍ من الكاشفات المؤمنات بقِيَمهن الإسلامية، المنتميات إلى وطنهن، المتحليات بالمهارات القيادية والاجتماعية التي تُمكّنهن من المشاركة الإيجابية في بناء المجتمع وخدمته.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 رسالة الحركة</div>
+    <p>تنشئة الطالبة تنشئةً إسلاميةً متوازنة وفق المنهج الكشفي، من خلال برامج وأنشطة هادفة تُنمّي شخصيتها روحياً وجسدياً وعقلياً واجتماعياً وبيئياً، وتُعزّز لديها قِيَم الانتماء والمواطنة.</p>
+  </div>
+
+  <div class="goals-grid">
+    <div class="goal-card">
+      <div class="goal-category">🕌 القيم الإسلامية</div>
+      <ul class="goal-list">
+        <li>تعزيز العقيدة الإسلامية الصحيحة</li>
+        <li>التمسك بالأخلاق الحميدة</li>
+        <li>أداء الواجبات الدينية بوعي</li>
+        <li>الالتزام بالقرآن الكريم والسنة</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <div class="goal-category">🏳️ القيم الوطنية</div>
+      <ul class="goal-list">
+        <li>الولاء والإخلاص للوطن</li>
+        <li>احترام النظام والقوانين</li>
+        <li>المشاركة في خدمة المجتمع</li>
+        <li>المحافظة على هوية المملكة</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <div class="goal-category">🤝 القيم الكشفية</div>
+      <ul class="goal-list">
+        <li>الصدق والأمانة</li>
+        <li>الإخاء والتعاون</li>
+        <li>المبادرة والإبداع</li>
+        <li>خدمة الآخرين طوعاً</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚜️ الوعد الكشفي</div>
+    <p>«أعاهد بشرفي أن أبذل جهدي في أداء واجبي نحو الله والوطن وأن أعمل لمساعدة الغير في كل وقت وأن أُطيع القانون الكشفي»</p>
+  </div>
+</div>
+
+<!-- STAGES PAGE -->
+<div class="page" id="page-stages">
+  <div class="section-header">
+    <div class="section-icon">🌱</div>
+    <div>
+      <div class="section-title">المراحل الكشفية وتشكيل الوحدة</div>
+      <div class="section-desc">مراحل الكشافة وبنية الوحدة المدرسية</div>
+    </div>
+  </div>
+
+  <div class="stages-wrap">
+    <div class="stage-card">
+      <div class="stage-badge">🌸</div>
+      <div>
+        <div class="stage-name">مرحلة الوردة (الكشفية الصغيرة)</div>
+        <div class="stage-age">الصف: الأول والثاني الابتدائي | السن: ٦ - ٨ سنوات</div>
+        <div class="stage-desc">المرحلة التأسيسية التي تُعرِّف الطالبة بالحركة الكشفية وقيمها من خلال الألعاب والأناشيد والقصص الهادفة. تُركّز على تنمية مهارات التعاون والاستقلالية والمشاركة.</div>
+      </div>
+    </div>
+    <div class="stage-card">
+      <div class="stage-badge">🍀</div>
+      <div>
+        <div class="stage-name">مرحلة البرعم</div>
+        <div class="stage-age">الصف: الثالث والرابع الابتدائي | السن: ٨ - ١١ سنة</div>
+        <div class="stage-desc">مرحلة بناء المهارات الأساسية كالعُقَد والإشارات والتخييم. تُشكَّل فيها الطليعة وتُختار القائدة، ويبدأ التعلم التعاوني بشكل فعّال.</div>
+      </div>
+    </div>
+    <div class="stage-card">
+      <div class="stage-badge">🌿</div>
+      <div>
+        <div class="stage-name">مرحلة الكشافة</div>
+        <div class="stage-age">الصف: الخامس والسادس الابتدائي | السن: ١١ - ١٤ سنة</div>
+        <div class="stage-desc">المرحلة المتقدمة التي تُكرَّس فيها مهارات القيادة والمبادرة وخدمة المجتمع. تُنفَّذ المشاريع الكشفية الكبرى وتُطبَّق تقنيات التخييم والإسعاف والاستكشاف.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 16px;">
+    <div class="card-title">🏗️ بنية الوحدة الكشفية المدرسية</div>
+    <table class="plan-table">
+      <tr>
+        <th>المسمى</th>
+        <th>العدد</th>
+        <th>المهام</th>
+      </tr>
+      <tr>
+        <td>رائدة الوحدة</td>
+        <td>١</td>
+        <td>الإشراف العام وتنسيق الأنشطة</td>
+      </tr>
+      <tr>
+        <td>مساعدة رائدة الوحدة</td>
+        <td>١</td>
+        <td>دعم التنفيذ والمتابعة اليومية</td>
+      </tr>
+      <tr>
+        <td>قائدات الطليعة</td>
+        <td>٤ - ٦</td>
+        <td>قيادة كل طليعة وتنظيم أعضائها</td>
+      </tr>
+      <tr>
+        <td>الكاشفات (أعضاء)</td>
+        <td>٢٤ - ٣٦</td>
+        <td>تنفيذ الأنشطة والمشاركة الكاملة</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- GOALS PAGE -->
+<div class="page" id="page-goals">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <div>
+      <div class="section-title">الأهداف الاستراتيجية للكشفية</div>
+      <div class="section-desc">أهداف النشاط الكشفي للعام الدراسي</div>
+    </div>
+  </div>
+
+  <div class="goals-grid">
+    <div class="goal-card">
+      <div class="goal-category">🕌 الجانب الديني والروحي</div>
+      <ul class="goal-list">
+        <li>حفظ أذكار الصباح والمساء وتطبيقها</li>
+        <li>حضور دروس تحفيظ القرآن الكريم</li>
+        <li>الالتزام بالصلاة وآداب التعامل الإسلامي</li>
+        <li>تعزيز قيمة الصدق والأمانة عملياً</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <div class="goal-category">🧠 الجانب المعرفي</div>
+      <ul class="goal-list">
+        <li>تعلم قراءة الخرائط والبوصلة</li>
+        <li>اكتساب مهارات الإسعافات الأولية</li>
+        <li>معرفة التاريخ الكشفي ومؤسسيه</li>
+        <li>تنمية مهارات التفكير النقدي وحل المشكلات</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <div class="goal-category">💪 الجانب المهاري</div>
+      <ul class="goal-list">
+        <li>إتقان العُقَد والمهارات الحبلية</li>
+        <li>تعلم فنون التخييم والمعسكرات</li>
+        <li>إجادة إشارات الصافرة والرُّمُوز</li>
+        <li>اكتساب مهارات الطبخ على المحيط</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <div class="goal-category">🤝 الجانب الاجتماعي</div>
+      <ul class="goal-list">
+        <li>المشاركة في مشاريع خدمة المجتمع</li>
+        <li>تعزيز العمل الجماعي والقيادة</li>
+        <li>بناء مهارات التواصل والإقناع</li>
+        <li>الانفتاح على قضايا المجتمع والبيئة</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <div class="goal-category">🌿 الجانب البيئي</div>
+      <ul class="goal-list">
+        <li>المشاركة في مبادرات تشجير المدرسة</li>
+        <li>تعزيز ثقافة الاستدامة وتدوير المخلفات</li>
+        <li>الاهتمام بنظافة البيئة المدرسية</li>
+        <li>توعية الزميلات بأهمية البيئة</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <div class="goal-category">⭐ الجانب القيادي</div>
+      <ul class="goal-list">
+        <li>تأهيل قائدات طليعة على مستوى عالٍ</li>
+        <li>تنظيم دورات تدريبية قيادية</li>
+        <li>تشجيع اتخاذ القرار والمبادرة</li>
+        <li>رفع مهارات التخطيط والتنظيم</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PLAN PAGE -->
+<div class="page" id="page-plan">
+  <div class="section-header">
+    <div class="section-icon">📋</div>
+    <div>
+      <div class="section-title">خطة الوحدة الكشفية</div>
+      <div class="section-desc">الخطة الفصلية التفصيلية للعام الدراسي</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 الخطة الزمنية - الفصل الأول</div>
+  </div>
+  <table class="plan-table">
+    <tr>
+      <th>#</th>
+      <th>الشهر</th>
+      <th>النشاط المقرر</th>
+      <th>النوع</th>
+      <th>الحالة</th>
+    </tr>
+    <tr>
+      <td>١</td>
+      <td>محرم</td>
+      <td>تشكيل الوحدة وانتخاب القائدات</td>
+      <td><span class="badge badge-blue">تنظيمي</span></td>
+      <td><span class="badge badge-green">منجز ✓</span></td>
+    </tr>
+    <tr>
+      <td>٢</td>
+      <td>صفر</td>
+      <td>تعلم الوعد والقانون الكشفي</td>
+      <td><span class="badge badge-blue">تدريبي</span></td>
+      <td><span class="badge badge-green">منجز ✓</span></td>
+    </tr>
+    <tr>
+      <td>٣</td>
+      <td>ربيع الأول</td>
+      <td>مهارات العُقَد والحبال</td>
+      <td><span class="badge badge-orange">مهاري</span></td>
+      <td><span class="badge badge-green">منجز ✓</span></td>
+    </tr>
+    <tr>
+      <td>٤</td>
+      <td>ربيع الثاني</td>
+      <td>الإسعافات الأولية الأساسية</td>
+      <td><span class="badge badge-blue">تدريبي</span></td>
+      <td><span class="badge badge-green">منجز ✓</span></td>
+    </tr>
+    <tr>
+      <td>٥</td>
+      <td>جمادى الأولى</td>
+      <td>رحلة استكشافية للبيئة المحيطة</td>
+      <td><span class="badge badge-orange">ميداني</span></td>
+      <td><span class="badge badge-orange">قيد التنفيذ</span></td>
+    </tr>
+  </table>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-title">📅 الخطة الزمنية - الفصل الثاني</div>
+  </div>
+  <table class="plan-table">
+    <tr>
+      <th>#</th>
+      <th>الشهر</th>
+      <th>النشاط المقرر</th>
+      <th>النوع</th>
+      <th>الحالة</th>
+    </tr>
+    <tr>
+      <td>١</td>
+      <td>رجب</td>
+      <td>مشروع خدمة المجتمع المدرسي</td>
+      <td><span class="badge badge-orange">خدمي</span></td>
+      <td><span class="badge badge-blue">مخطط</span></td>
+    </tr>
+    <tr>
+      <td>٢</td>
+      <td>شعبان</td>
+      <td>مهارات التخييم والبقاء</td>
+      <td><span class="badge badge-orange">مهاري</span></td>
+      <td><span class="badge badge-blue">مخطط</span></td>
+    </tr>
+    <tr>
+      <td>٣</td>
+      <td>رمضان</td>
+      <td>الأنشطة الرمضانية والقرآنية</td>
+      <td><span class="badge badge-blue">ديني</span></td>
+      <td><span class="badge badge-blue">مخطط</span></td>
+    </tr>
+    <tr>
+      <td>٤</td>
+      <td>شوال</td>
+      <td>التقرير الختامي وتوزيع الشارات</td>
+      <td><span class="badge badge-blue">تقييمي</span></td>
+      <td><span class="badge badge-blue">مخطط</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- SIGNALS PAGE -->
+<div class="page" id="page-signals">
+  <div class="section-header">
+    <div class="section-icon">📯</div>
+    <div>
+      <div class="section-title">الصافرات والتشكيلات</div>
+      <div class="section-desc">إشارات الصافرة وتشكيلات الوحدة</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📯 إشارات الصافرة الأساسية</div>
+  </div>
+
+  <div class="signals-grid">
+    <div class="signal-card">
+      <div class="signal-icon">🔔</div>
+      <div class="signal-name">صافرة واحدة طويلة</div>
+      <div class="signal-desc">الانتباه والتأهب — تقف جميع الكاشفات في وضع الوقوف</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-icon">🔔🔔</div>
+      <div class="signal-name">صافرتان طويلتان</div>
+      <div class="signal-desc">التجمع السريع حول الرائدة أو القائدة</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-icon">🔔🔔🔔</div>
+      <div class="signal-name">ثلاث صافرات</div>
+      <div class="signal-desc">الاستغاثة والطوارئ — الإسراع للمكان</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-icon">🔕</div>
+      <div class="signal-name">صافرة قصيرة متكررة</div>
+      <div class="signal-desc">التقدم للأمام أو الانصراف حسب السياق</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-icon">▶️</div>
+      <div class="signal-name">صافرة واحدة قصيرة</div>
+      <div class="signal-desc">التوقف عن الحركة والسكون التام</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-icon">⏸️</div>
+      <div class="signal-name">صافرة طويلة ثم قصيرة</div>
+      <div class="signal-desc">الجلوس في المكان وانتظار التعليمات</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 10px;">
+    <div class="card-title">🏗️ أشكال التشكيلات الكشفية</div>
+    <table class="plan-table">
+      <tr>
+        <th>التشكيل</th>
+        <th>الوصف</th>
+        <th>الاستخدام</th>
+      </tr>
+      <tr>
+        <td>الصف المفرد</td>
+        <td>وقوف الكاشفات في صف واحد متراصّ</td>
+        <td>أوقات التجمع والتفتيش اليومي</td>
+      </tr>
+      <tr>
+        <td>الحدوة (شكل U)</td>
+        <td>وقوف الوحدة على شكل حرف U</td>
+        <td>الاحتفالات والاجتماعات الرسمية</td>
+      </tr>
+      <tr>
+        <td>الدائرة</td>
+        <td>وقوف الكاشفات في دائرة كاملة</td>
+        <td>الأناشيد والألعاب الجماعية</td>
+      </tr>
+      <tr>
+        <td>الصفوف الثنائية</td>
+        <td>الوقوف في صفين متوازيين</td>
+        <td>المسيرات والتنقل الرسمي</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- AWARDS PAGE -->
+<div class="page" id="page-awards">
+  <div class="section-header">
+    <div class="section-icon">🏅</div>
+    <div>
+      <div class="section-title">الإيعازات والنداءات والشارات</div>
+      <div class="section-desc">الأوامر الحركية والشارات التحفيزية</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📢 الإيعازات الحركية الأساسية</div>
+    <table class="plan-table">
+      <tr>
+        <th>الإيعاز</th>
+        <th>الحركة المطلوبة</th>
+      </tr>
+      <tr><td>استعداد!</td><td>الوقوف منتصبة، النظر للأمام، الأيدي على الجانبين</td></tr>
+      <tr><td>انتباه!</td><td>الوقوف بشكل أكثر انتظاماً مع تقارب الكعبين</td></tr>
+      <tr><td>استرِح!</td><td>فتح القدمين، وضع اليدين خلف الظهر</td></tr>
+      <tr><td>استدِر يمين!</td><td>الالتفاف ٩٠ درجة نحو اليمين</td></tr>
+      <tr><td>استدِر يسار!</td><td>الالتفاف ٩٠ درجة نحو اليسار</td></tr>
+      <tr><td>انصرِف!</td><td>الانتهاء من التشكيل والتفرق بانضباط</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top: 14px;">
+    <div class="card-title">🏕️ شعار الكاشفة</div>
+    <p style="text-align:center; font-size: 18px; font-weight: 700; color: var(--olive); padding: 10px 0;">«كوني مستعدة»</p>
+    <p>وهو شعار يحثّ الكاشفة على الاستعداد الدائم لمواجهة تحديات الحياة، وخدمة الوطن والمجتمع في أي وقت وأي مكان.</p>
+  </div>
+
+  <div class="awards-grid" style="margin-top: 14px;">
+    <div class="award-card">
+      <div class="award-icon">⭐</div>
+      <div class="award-name">شارة الكاشفة المبتدئة</div>
+      <div class="award-desc">لإتقان المبادئ الأساسية والوعد الكشفي والقانون</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🌟</div>
+      <div class="award-name">شارة الكاشفة النشيطة</div>
+      <div class="award-desc">لإنجاز عدد من الأنشطة المقررة بتميز</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div class="award-name">شارة الكاشفة المتميزة</div>
+      <div class="award-desc">لأعلى مستوى من الأداء والقيادة والإنجاز</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🤝</div>
+      <div class="award-name">شارة خدمة المجتمع</div>
+      <div class="award-desc">للمشاركة المتميزة في خدمة المجتمع المحلي</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🌿</div>
+      <div class="award-name">شارة البيئة الخضراء</div>
+      <div class="award-desc">لإسهاماتها في المحافظة على البيئة وتشجيرها</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🩺</div>
+      <div class="award-name">شارة الإسعافات الأولية</div>
+      <div class="award-desc">لإجادة أساسيات الإسعافات الأولية الكاملة</div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVITIES PAGE -->
+<div class="page" id="page-activities">
+  <div class="section-header">
+    <div class="section-icon">🎨</div>
+    <div>
+      <div class="section-title">الأنشطة والفعاليات</div>
+      <div class="section-desc">سجل الأنشطة المنفذة خلال العام</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📝 سجل الأنشطة المنفذة</div>
+  </div>
+
+  <div class="activities-wrap">
+    <div class="activity-row header">
+      <span>#</span>
+      <span>اسم النشاط</span>
+      <span>التاريخ</span>
+      <span>المكان</span>
+      <span>الحالة</span>
+    </div>
+    <div class="activity-row">
+      <span class="activity-num">١</span>
+      <span class="activity-name">حفل افتتاح الوحدة وتوزيع الشارات</span>
+      <span class="activity-date">١٤٤٨/١/٢٨هـ</span>
+      <span class="activity-place">ملعب المدرسة</span>
+      <span><span class="badge badge-green">✓ منجز</span></span>
+    </div>
+    <div class="activity-row">
+      <span class="activity-num">٢</span>
+      <span class="activity-name">ورشة مهارات العُقَد الكشفية</span>
+      <span class="activity-date">١٤٤٨/٢/١٥هـ</span>
+      <span class="activity-place">قاعة النشاط</span>
+      <span><span class="badge badge-green">✓ منجز</span></span>
+    </div>
+    <div class="activity-row">
+      <span class="activity-num">٣</span>
+      <span class="activity-name">دورة الإسعافات الأولية الأساسية</span>
+      <span class="activity-date">١٤٤٨/٣/١٠هـ</span>
+      <span class="activity-place">المختبر</span>
+      <span><span class="badge badge-green">✓ منجز</span></span>
+    </div>
+    <div class="activity-row">
+      <span class="activity-num">٤</span>
+      <span class="activity-name">مشروع تجميل الحديقة المدرسية</span>
+      <span class="activity-date">١٤٤٨/٤/٥هـ</span>
+      <span class="activity-place">حديقة المدرسة</span>
+      <span><span class="badge badge-green">✓ منجز</span></span>
+    </div>
+    <div class="activity-row">
+      <span class="activity-num">٥</span>
+      <span class="activity-name">رحلة استكشافية — طبيعة الطائف</span>
+      <span class="activity-date">١٤٤٨/٥/٢٠هـ</span>
+      <span class="activity-place">متنزه الهدا</span>
+      <span><span class="badge badge-orange">قيد التنفيذ</span></span>
+    </div>
+    <div class="activity-row">
+      <span class="activity-num">٦</span>
+      <span class="activity-name">مسابقة المهارات الكشفية بين الطليعات</span>
+      <span class="activity-date">١٤٤٨/٧/١هـ</span>
+      <span class="activity-place">ملعب المدرسة</span>
+      <span><span class="badge badge-blue">مخطط</span></span>
+    </div>
+    <div class="activity-row">
+      <span class="activity-num">٧</span>
+      <span class="activity-name">اليوم الكشفي المفتوح مع الأسرة</span>
+      <span class="activity-date">١٤٤٨/٨/١٥هـ</span>
+      <span class="activity-place">المدرسة كاملة</span>
+      <span><span class="badge badge-blue">مخطط</span></span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top: 14px;">
+    <div class="card-title">📊 ملخص الإنجاز</div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-card-icon">✅</div>
+        <div class="info-card-label">أنشطة منجزة</div>
+        <div class="info-card-value">٤ أنشطة</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">⏳</div>
+        <div class="info-card-label">قيد التنفيذ</div>
+        <div class="info-card-value">١ نشاط</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📌</div>
+        <div class="info-card-label">مخطط له</div>
+        <div class="info-card-value">٢ نشاطات</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">👧</div>
+        <div class="info-card-label">إجمالي المشاركات</div>
+        <div class="info-card-value">+٢٠٠ طالبة</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORMS PAGE -->
+<div class="page" id="page-forms">
+  <div class="section-header">
+    <div class="section-icon">📄</div>
+    <div>
+      <div class="section-title">الاستمارات الرسمية</div>
+      <div class="section-desc">نماذج الانتساب والتقييم والتوثيق</div>
+    </div>
+  </div>
+
+  <div class="form-wrap">
+    <div class="form-title">📋 استمارة انتساب كاشفة جديدة</div>
+    <div class="form-grid">
+      <div class="form-field">
+        <label>الاسم الكامل</label>
+        <input type="text" placeholder="أدخلي الاسم الرباعي">
+      </div>
+      <div class="form-field">
+        <label>رقم الهوية الوطنية</label>
+        <input type="text" placeholder="١٠٠XXXXXXXX">
+      </div>
+      <div class="form-field">
+        <label>الصف والشعبة</label>
+        <select>
+          <option>الصف الأول</option>
+          <option>الصف الثاني</option>
+          <option>الصف الثالث</option>
+          <option>الصف الرابع</option>
+          <option>الصف الخامس</option>
+          <option>الصف السادس</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>مرحلة الكشافة</label>
+        <select>
+          <option>مرحلة الوردة</option>
+          <option>مرحلة البرعم</option>
+          <option>مرحلة الكشافة</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>اسم ولي الأمر</label>
+        <input type="text" placeholder="اسم الوالد أو الأم">
+      </div>
+      <div class="form-field">
+        <label>رقم جوال ولي الأمر</label>
+        <input type="tel" placeholder="05XXXXXXXX">
+      </div>
+      <div class="form-field full">
+        <label>ملاحظات خاصة (إن وجدت)</label>
+        <textarea rows="3" placeholder="أي معلومات إضافية تودّين ذكرها..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-wrap">
+    <div class="form-title">✅ قائمة المتطلبات الكشفية الأساسية</div>
+    <ul class="checklist">
+      <li><input type="checkbox"> حفظ الوعد الكشفي وأداؤه أمام الوحدة</li>
+      <li><input type="checkbox"> حفظ القانون الكشفي العشرة والتزامه</li>
+      <li><input type="checkbox"> إجادة ثلاث عُقَد كشفية على الأقل</li>
+      <li><input type="checkbox"> المشاركة في نشاط خدمة مجتمعي واحد</li>
+      <li><input type="checkbox"> اجتياز اختبار الإشارات والصافرات</li>
+      <li><input type="checkbox"> حضور ٨٠٪ من اجتماعات الوحدة الأسبوعية</li>
+      <li><input type="checkbox"> إتقان مهارة إسعاف أولي واحدة</li>
+      <li><input type="checkbox"> المشاركة في رحلة استكشافية واحدة</li>
+      <li><input type="checkbox"> تقديم عرض قصير أمام الوحدة</li>
+      <li><input type="checkbox"> تسجيل أنشطتها في دفتر يومية الكاشفة</li>
+    </ul>
+  </div>
+
+  <div class="form-wrap">
+    <div class="form-title">📊 استمارة تقييم أداء الكاشفة</div>
+    <div class="form-grid">
+      <div class="form-field">
+        <label>اسم الكاشفة</label>
+        <input type="text" placeholder="الاسم الكامل">
+      </div>
+      <div class="form-field">
+        <label>الفصل الدراسي</label>
+        <select><option>الفصل الأول</option><option>الفصل الثاني</option></select>
+      </div>
+      <div class="form-field">
+        <label>درجة الالتزام بالحضور (من ١٠)</label>
+        <input type="number" min="1" max="10" placeholder="٨">
+      </div>
+      <div class="form-field">
+        <label>درجة المهارات الكشفية (من ١٠)</label>
+        <input type="number" min="1" max="10" placeholder="٧">
+      </div>
+      <div class="form-field">
+        <label>درجة روح الفريق (من ١٠)</label>
+        <input type="number" min="1" max="10" placeholder="٩">
+      </div>
+      <div class="form-field">
+        <label>درجة المبادرة والإبداع (من ١٠)</label>
+        <input type="number" min="1" max="10" placeholder="٨">
+      </div>
+      <div class="form-field full">
+        <label>ملاحظات الرائدة</label>
+        <textarea rows="3" placeholder="تقييم شامل لأداء الكاشفة خلال الفترة..."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONCLUSION PAGE -->
+<div class="page" id="page-conclusion">
+  <div class="conclusion-wrap">
+    <div class="conclusion-icon">⚜️</div>
+    <div class="conclusion-title">الخاتمة والتوصيات</div>
+    <div class="conclusion-text">
+      يُختتم هذا الملف الكشفي بالشكر والتقدير لجميع الكاشفات المتميزات اللواتي أسهمن
+      في رفع مستوى الوحدة الكشفية خلال هذا العام الدراسي، وذلك بتفانيهن في الأنشطة
+      والمشاركة الفاعلة في خدمة مدرستهن ومجتمعهن، ونسأل الله أن يوفقنا جميعاً
+      لما يُحبّ ويرضى، وأن يجعل هذا الجهد في ميزان الحسنات.
+    </div>
+
+    <div class="card" style="background: rgba(255,255,255,0.1); border: none; color: white; max-width: 600px; margin: 0 auto 20px; text-align: right;">
+      <div class="card-title" style="color: var(--gold-light);">📌 أبرز التوصيات للعام القادم</div>
+      <ul style="color: rgba(255,255,255,0.85);">
+        <li>توسيع قاعدة المشاركة لتشمل جميع الصفوف الدراسية</li>
+        <li>تخصيص ميزانية أكبر للأنشطة الميدانية والرحلات الكشفية</li>
+        <li>بناء شراكات مجتمعية لتعزيز أنشطة خدمة المجتمع</li>
+        <li>تطوير مهارات الرائدات من خلال الدورات التدريبية</li>
+        <li>توثيق الأنشطة إلكترونياً لبناء أرشيف تراكمي للوحدة</li>
+      </ul>
+    </div>
+
+    <div class="signature-grid" style="max-width: 700px; margin: 0 auto;">
+      <div class="sig-box">
+        <div class="sig-label">رائدة الوحدة الكشفية</div>
+        <div class="sig-line">أفراح حسن الأسمري</div>
+      </div>
+      <div class="sig-box">
+        <div class="sig-label">مديرة المدرسة</div>
+        <div class="sig-line">التوقيع والختم</div>
+      </div>
+      <div class="sig-box">
+        <div class="sig-label">تاريخ إعداد الملف</div>
+        <div class="sig-line">١٤٤٨ / ١٤٤٩ هـ</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
